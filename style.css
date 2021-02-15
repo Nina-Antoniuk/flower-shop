@@ -20,14 +20,8 @@ figure {
   background-color: #fff;
   box-shadow: 0 0 30px rgba(51, 51, 51, 0.158);
   padding: 0.5em 0 0 3.5em;
-  background: rgb(255, 107, 167);
-  background: linear-gradient(
-    140deg,
-    rgba(255, 107, 167, 1) 14%,
-    rgba(251, 251, 255, 0.95) 41%,
-    rgba(255, 255, 243, 1) 60%,
-    rgba(114, 238, 88, 1) 88%
-  );
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
 }
 .logo {
   width: 15vw;
@@ -126,6 +120,7 @@ figure {
   display: none;
 }
 .cart-list {
+  padding: 0;
   list-style-type: none;
   font-size: 14px;
 }

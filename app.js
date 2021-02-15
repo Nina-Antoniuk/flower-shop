@@ -1,4 +1,4 @@
-let dateBase = [ {
+const dateBase = [ {
     "section": "квіти",
     "group": "троянди",
     "id": 2899838,
@@ -160,24 +160,21 @@ $('.search-button').focus(() => $('.search-input').toggle('.hidden'));
 $('.cart-button').focus(() => $('.cart-window').toggle('.hidden'));
 
 
-let cartList = document.querySelector('.cart-list');
-
+const cartList = document.querySelector('.cart-list');
 
 const createListItem = function() {
     let listItem = document.createElement('li');
     listItem.className = 'cart-list-item';
+    cartList.append(listItem);
     return listItem;
 }
 
-let cart = [];
-let addBtn = document.querySelectorAll('.add-to-cart');
+const cart = [];
+const addBtns = document.querySelectorAll('.add-to-cart');
 
-for (let i in addBtn) { 
-    let item = addBtn[i];
-    item.onclick = function () { 
+let addBtn = addBtns.forEach(function (item) {
+    item.onclick = function () {
         this.disabled = true;
-        let listItem = createListItem();
-        cartList.append(listItem);
         let cardBody = this.parentElement.parentElement;
         let cartItem = {
             title: cardBody.querySelector('.card-title').textContent,
@@ -185,14 +182,24 @@ for (let i in addBtn) {
             price: cardBody.querySelector('.price').textContent,
             count: 1
         }
-        listItem.innerHTML = `${cartItem.title} ${cartItem.id} ${cartItem.price} 
-                              <button type="button" class="cart-btn plus">+</button>
-                              <span class="count">${cartItem.count}</span>
-                              <button type="button" class="cart-btn minus">-</button>`;
-        cart.push(cartItem);
-        return listItem;
+        // cart.push(cartItem);
+        renderListItem(cartItem);
+        
     }
+});
+
+const renderListItem = function (item) { 
+    let listItem = createListItem();
+    listItem.innerHTML = `${item.title} ${item.id} ${item.price} 
+                              <button type="button" class="cart-btn plus">+</button>
+                              <span class="count">${item.count}</span>
+                              <button type="button" class="cart-btn minus">-</button>`;
+    return listItem;
 }
 
 
-
+const getParentElement = function (element) { 
+    return element.parentElement;
+}
+let list = document.querySelector('.cart-list').children;
+let test = list[0].children[0];
